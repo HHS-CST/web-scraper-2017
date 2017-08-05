@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 description = {
 	"Name":"",
+	"URL":"",
 	"Description":""
 }
 
