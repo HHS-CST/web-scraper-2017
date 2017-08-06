@@ -1,4 +1,4 @@
-from bottle import route, redirect
+from bottle import route, redirect, run
 import os
 
 modules = []
@@ -24,3 +24,8 @@ def module_page(module):
 	out += "<li>Description: "+description+"</li>"
 	out += "<li>Product"+product+"</li>"
 	return out
+	
+if __name__ == "__main__":
+	host = "0.0.0.0"
+	port = 1234
+	run(host = host, port = port)
