@@ -1,13 +1,20 @@
 from bottle import route, redirect, run
 import os
+import sys
 
 modules = []
 
+ignore = ["README.md","loadall.py", "__pycache__"]
+
 for filename in os.listdir('.'):
-	modulename = address.split('.')[0]
-	exec('import '+modulename+'.main as '+modulename)
-	exec('import '+modulename+'.description as '+modulename+"_description")
-	modules.append(modulename)
+        if filename in ignore:
+                continue
+        modulename = filename.split('.')[0]
+        if modulename == "": continue
+        print(modulename)
+        exec('from '+modulename+' import main as '+modulename)
+        exec('from '+modulename+' import description as '+modulename+"_description")
+        modules.append(modulename)
 	
 @route('/web-scraper-2017')
 def main_page():
@@ -18,12 +25,13 @@ def main_page():
 	
 @route('/web-scraper-2017/<module>')
 def module_page(module):
-	description = eval(module+"_description")
-	product = eval(module+"()")
-	out = "<li><b>"+module.replace('_',' ')+"</b></li>"
-	out += "<li>Description: "+description+"</li>"
-	out += "<li>Product"+product+"</li>"
-	return out
+        description = eval(module+"_description")
+        product = eval(module+"()")
+        out = "<li><b>"+module.replace('_',' ')+"</b></li>"
+        out += "<li>Description: "+str(description)+"</li>"
+        try:out += "<li>Product"+product+"</li>"
+        except:out += "<li>No Product</li>"
+        return out
 	
 if __name__ == "__main__":
 	host = "0.0.0.0"
