@@ -6,7 +6,7 @@ modules = []
 
 ignore = ["README.md","loadall.py", "__pycache__"]
 
-for filename in os.listdir('.'):
+for filename in os.listdir('./scrapers'):
         if filename in ignore:
                 continue
         modulename = filename.split('.')[0]
