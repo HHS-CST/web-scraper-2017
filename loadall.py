@@ -4,9 +4,9 @@ import sys
 
 modules = []
 
-ignore = ["README.md","loadall.py", "__pycache__"]
+ignore = ["README.md","loadall.py", "__pycache__", "Web Scraper.ipynb", "Youtube Web Scraper.ipynb"]
 
-for filename in os.listdir('./scrapers'):
+for filename in os.listdir('.'):
         if filename in ignore:
                 continue
         modulename = filename.split('.')[0]
